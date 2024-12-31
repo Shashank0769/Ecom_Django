@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    <h1>Your Cart</h1>
+    <ul>
+        {% for item in cart_items %}
+        <li>
+            <h2>{{ item.product.name }}</h2>
+            <p>Quantity: {{ item.quantity }}</p>
+            <p>Price: ${{ item.product.price }}</p>
+            <p>Total: ${{ item.product.price|floatformat:2 }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <h2>Total Price: ${{ total }}</h2>
+    <a href="/">Back to Products</a>
+{% endblock %}

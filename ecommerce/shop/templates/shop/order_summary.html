@@ -1,0 +1,18 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    <h1>Order Summary</h1>
+    <ul>
+        {% for item in cart_items %}
+        <li>
+            <h2>{{ item.product.name }}</h2>
+            <p>Quantity: {{ item.quantity }}</p>
+            <p>Price: ${{ item.product.price }}</p>
+            <p>Total: ${{ item.total_price }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <h2>Total Price: ${{ total_price }}</h2>
+    <a href="/">Back to Products</a>
+    <a href="/checkout/">Proceed to Checkout</a>
+{% endblock %}

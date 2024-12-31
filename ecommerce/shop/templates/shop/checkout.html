@@ -1,0 +1,27 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    <h1>Checkout</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% elif success %}
+        <p>{{ success }}</p>
+        <a href="/">Continue Shopping</a>
+    {% else %}
+        <ul>
+            {% for item in cart_items %}
+                <li>
+                    <h2>{{ item.product.name }}</h2>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p>Price: ${{ item.product.price }}</p>
+                    <p>Total: ${{ item.total_price }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <h2>Total Price: ${{ total_price }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Place Order</button>
+        </form>
+    {% endif %}
+{% endblock %}
